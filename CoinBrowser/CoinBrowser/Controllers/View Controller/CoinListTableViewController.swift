@@ -10,6 +10,7 @@ import UIKit
 class CoinListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         CoinController.fetchCoins { success in
             if success {
                 DispatchQueue.main.async {
@@ -28,8 +29,13 @@ class CoinListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "coinCell", for: indexPath)
         let coin = CoinController.coins[indexPath.row]
-        cell.textLabel?.text = coin.name
-        cell.detailTextLabel?.text = "Symbol: \(coin.symbol), id: \(coin.id)"
+        // Create the "custom" configuration
+        var coinCellConfiguration = cell.defaultContentConfiguration()
+        // Set the values
+        coinCellConfiguration.text = coin.name
+        coinCellConfiguration.secondaryText = "Symbol: \(coin.symbol), id: \(coin.id)"
+        // Set the configuration
+        cell.contentConfiguration = coinCellConfiguration
 
         return cell
     }
