@@ -20,7 +20,7 @@ Students who complete this project independently or as a pairing will showcase t
 
 Create a `UITableView` with a `subtitle` style and no navigation. Do not forget to create the necessary `Controller` files and to `subclass`
 
-[image:767A2B61-3051-45BE-B4A5-C79FB8C8B818-42920-00015B0B4680C3EE/Simulator Screen Shot - iPhone 13 Pro - 2022-01-30 at 14.59.58.png]
+![moonshot UI](moonshot.png)
 
 
 ---
