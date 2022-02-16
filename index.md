@@ -38,7 +38,7 @@ As you are reading the docs you should be looking for a few important pieces of 
 
 You need to discover the following things:
 1. The base URL
-	1. What is the *consistent * part of the URL
+	1. What is the *consistent * part of the URL?
 2. The full URL
 	1. What does the full URL look like?
 	2. What `URLComponents` does it need?
@@ -63,12 +63,12 @@ Let’s go through each of these one at a time and see how they will work with a
 
 1. Create
 	1. Ask yourself *how* the `Coin` objects will be created. Are they created manually for a user? Or do we fetch the data from an API?
-	2. Declare a method signature named `fetchCoins`
+	2. Declare a method signature named `fetchCoins`.
 		1. Mark this as a `static` function.
 2. Read
 	1. Once we have `fetched` the `Coin` objects from the API we will need a location to store them. From this `Source of Truth` the remainder of the application files will *READ* the data.
 	2. Declare a local source of truth named `coins`.
-		1. Set the type appropriately
+		1. Set the type appropriately.
 3. Update
 	1. Should we allow our users to *change* the data on the  `Coin` objects?
 	2. I don’t think so…
@@ -93,8 +93,8 @@ All we need to accomplish the goals of this app is  `fetch` the data from the A
 
 ### Complete the Fetch Function
 Within the `fetchCoins` function we have a few goals. 
-1. First, we need to decide what we want the `fetch` function to complete with. Because this function will be responsible for hitting an `API Endpoint`, we know it will need a completion handler. 
-2. Then, we need to piece together our URL. 
+1. First, we need to decide what we want the `fetch` function to complete with. Because this function will be responsible for hitting an `API Endpoint` we know it will need a completion handler. 
+2. Then we need to piece together our URL. 
 3. Once we have a `finalURL` we will pass that into the `dataTask(with: _, completion: )` function. This will `complete` with a `response` and either an `error` or `data`. 
 4. If we are successful in retrieving data from the `dataTask` we will then need to decode that `data` into our objects. 
 5. Once we have our objects we can add them to the `source` of truth.
@@ -127,7 +127,7 @@ Here is what the `finalURL` will look like once it's fully built.
 `https://api.coingecko.com/api/v3/coins/list` 
 Reference back to this while building the smaller pieces.
 
-**PAUSE:** You may be asking yourself - “Self, why in the world and I’m breaking apart this URL when I can just use the full URL?” Well, that’s a good question. The reason you are breaking it apart is that it will help you learn the aspects of a URL. You will also learn how to abstract the URL construction, which will, in turn, teach you how to write re-useable network calls. In short - practice makes you proficient. Okay, back to the f***N show.
+**PAUSE:** You may be asking yourself - “Self, why in the world and I’m breaking apart this URL when I can just use the full URL?” That’s a good question. The reason you are breaking it apart is that it will help you learn the aspects of a URL. You will also learn how to abstract the URL construction, which will, in turn, teach you how to write re-useable network calls. In short - practice makes you proficient. Okay, back to the f***N show.
 
 Here is what the `finalURL` will look like once it's fully built. 
 `https://api.coingecko.com/api/v3/coins/list` 
@@ -141,12 +141,12 @@ private static let baseURLString = "https://api.coingecko.com/api/v3"
 ```
 
 * Create a `private` and `static` property `above` the declaration of the `fetchCoins` function. This property will not change and should be named `keyCoinsComponent`. 
-	* Assign the value of the first `URLComponent` you will need to add to the `baseURLString` to create the `finalURL`
+	* Assign the value of the first `URLComponent` you will need to add to the `baseURLString` to create the `finalURL`.
 	* It is the convention to add a `key` to your “constants”. This showcases that they are “keys”, or required building blocks. This is yet another tool to allow you to write the cleanest Swift code possible. 
 * Create a `private` and `static` property `above` the declaration of the `fetchCoins` function. This property will not change and should be named `keyListComponent`. 
-	* Assign the value of the second `URLComponent` you will need to add to the `baseURLString` to create the `finalURL`
+	* Assign the value of the second `URLComponent` you will need to add to the `baseURLString` to create the `finalURL`.
 
-At this time you should have four properties above your `fetchCoins(completion: Bool)`
+At this time you should have four properties above your `fetchCoins(completion: Bool)`.
 * BaseURL
 * Coin Component
 * List Component
@@ -161,7 +161,7 @@ Now, let’s navigate to inside the body of the `fetchCoins(completion: Bool)`. 
 * create a new constant named `finalURL` by appending the `keyListComponent` to the `coinsURL`
 * print the `finalURL`
 
-Build and run. Commit, and take a 15 min break! We are now 1/3 of the way complete with our `fetchCoins(completion: Bool)`
+Build and run. Commit, and take a 15 min break! We are now 1/3 of the way complete with our `fetchCoins(completion: Bool)`.
 
 ---
 
@@ -169,11 +169,11 @@ Build and run. Commit, and take a 15 min break! We are now 1/3 of the way comple
 
 Under the creation of the `finalURL` we will perform a `dataTask` that will  `complete` with a `response` and either an `error` or `data`. If we are successful in retrieving data from the `dataTask` we will then need to decode that `data` into our objects. Once we have our objects we can add them to the `source` of truth. To accomplish this we need to:
 
-* call the `dataTask(with: URL, completionHandler: (Data?, URLResponse?, Error?) -> Void)` from the `shared` singleton on the `URLSession` class
-	* pass in the `finalURL`
+* call the `dataTask(with: URL, completionHandler: (Data?, URLResponse?, Error?) -> Void)` from the `shared` singleton on the `URLSession` class.
+	* pass in the `finalURL`.
 	* press `enter` on the autocompleteable aspect of the closure.
 		* ( I made that name up, ¯\_(ツ)_/¯ )
-	* Immediately head to the closing brace of this method and call `.resume()`
+	* Immediately head to the closing brace of this method and call `.resume()`.
 		* The program will not run without this line
 	* name each item
 		* coinData
@@ -190,25 +190,25 @@ Under the creation of the `finalURL` we will perform a `dataTask` that will  `co
 			* return
 	
 Okay, this next section will be the most challenging aspect of your Paired Programming Project.
-* Declare a Do -> Try -> Catch block
-* Within the body of the `do`
+* Declare a Do -> Try -> Catch block.
+* Within the body of the `do`:
 	* `if let` a new constant named `topLevelArrayOfCoinDictionaries`
-		* I know that’s a long name.. but I want it to be readable for what the constant technically is…
-	* assign the value of `try` ing to create a `JSONObject` with the `data` you unwrapped above. This should allow some fragments,  and be `optionally Type Cast` as an Array of Dictionaries that hold String keys and String values.
+		* I know that’s a long name but I want it to be readable for what the constant technically is…
+	* assign the value of `try` ing to create a `JSONObject` with the `data` you unwrapped above. This should allow some fragments, and be `optionally Type Cast` as an Array of Dictionaries that hold String keys and String values.
 		* `[[String:String]]`
 Within the `true` body of the `if let` you just created we need to loop through the `topLevelArrayOfCoinDictionaries` and interact with each dictionary one at a time.
-* for `coinDictionary` in `topLevelArrayOfCoinDictionaries`
-	* `if let` you can create a constant named `id` and assign the value of `coinDictionary`subscrtiped with the key `”id”`
-	* continuing with the same `if` create a new constant named `symbol` and assign the value of  `coinDictionary`subscrtiped with the key `”symbol”`
-	* continuing with the same `if` create a new constant named `name` and assign the value of  `coinDictionary`subscrtiped with the key `”name”`
-Within the true of this `if let`
-*  Create a new constant named `parcedCoin` and assign the value of a `Coin` initialized with the property’s we just subscripted from the `coinDictionary`
-* append this to the `source of truth`
+* for `coinDictionary` in `topLevelArrayOfCoinDictionaries`:
+	* `if let` you can create a constant named `id` and assign the value of `coinDictionary`subscrtiped with the key `”id”`.
+	* continuing with the same `if` create a new constant named `symbol` and assign the value of  `coinDictionary`subscrtiped with the key `”symbol”`.
+	* continuing with the same `if` create a new constant named `name` and assign the value of  `coinDictionary`subscrtiped with the key `”name”`.
+Within the true of this `if let`:
+*  Create a new constant named `parcedCoin` and assign the value of a `Coin` initialized with the property’s we just subscripted from the `coinDictionary`.
+* append this to the `source of truth`.
 * above the closing brace of the `do` call you successful completion. 
 	* completion(true)
-Within the body of the `catch`
-*  print `”Error in Do/Try/Catch: \(error.localizedDescription)”`
-* call the completion as a failure
+Within the body of the `catch`:
+*  print `”Error in Do/Try/Catch: \(error.localizedDescription)”`.
+* call the completion as a failure.
 
 Take a well-deserved sigh of relief. We did it! We have completed the networking code required to hit the `API Endpoint` and parse the data to create our `Coin` objects! Well done.
 
@@ -223,13 +223,13 @@ Build. Run. Commit. Party
 ## Wire Up the views
 To complete our app and test the networking we need to wire up the `UITableViewController` you created earlier. The first thing we need to do is call our `fetchCoins` function. If it completes successfully we will want to reload the `tableView`. Then, we need to complete the `UITableViewDataSourceMethods`. Let’s get coding!
 
-Within the body of the `viewDidLoad` write the following code
-* call the `fetchCoins` function from the `CoinController`
+Within the body of the `viewDidLoad` write the following code:
+* call the `fetchCoins` function from the `CoinController`.
 * press `enter` on the `autocompleteable` aspect of the closure.
-	* ( I made that name up, ¯\_(ツ)_/¯ )
-* replace the `Bool` with the word `success`
-* replace the `code` with a check if success is `true`
-	* if `true` write the following code
+	* ( I made that name up ¯\_(ツ)_/¯ )
+* replace the `Bool` with the word `success`.
+* replace the `code` with a check if success is `true`.
+	* if `true` write the following code.
 ```swift
 DispatchQueue.main.async {
    self.tableView.reloadData()
@@ -242,6 +242,6 @@ Great work! Now, complete the `UITableView` Data Source methods.
 
 Build and run your app! Everything should work. Hunt down and eradicate any bugs that may be present. Great work!
 
-Commit the final project and submit
+Commit the final project and submit.
 
 
