@@ -46,9 +46,8 @@ class CoinController {
                             self.coins.append(parsedCoin)
                         }
                     }
-                    completion(true)
                 }
-                
+                completion(true)
             } catch {
                 print("Error in Do/Try/Catch: \(error.localizedDescription)")
                 completion(false)
