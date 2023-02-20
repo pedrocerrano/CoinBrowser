@@ -12,9 +12,13 @@ class Coin {
     let symbol: String
     let name: String
     
-    init(id: String, symbol: String, name: String) {
+    init?(dictionary: [String: Any]) {
+        guard let id = dictionary[Keys.id] as? String,
+              let symbol = dictionary[Keys.symbol] as? String,
+              let name = dictionary[Keys.name] as? String else {return nil}
         self.id = id
         self.symbol = symbol
         self.name = name
     }
 }
+
