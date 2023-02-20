@@ -9,22 +9,21 @@ import Foundation
 
 class CoinController {
     
-    private static let baseURLString = "https://api.coingecko.com/api/v3"
-    private static let kCoins = "coins"
-    private static let kList = "list"
-    
     static var coins: [Coin] = []
     
     static func fetchCoins(completion: @escaping (Bool) -> Void) {
         
-        guard let baseURL = URL(string: baseURLString) else {
+        guard let baseURL = URL(string: Keys.baseURLString) else {
             completion(false)
             return}
+        var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
+        urlComponents?.path.append(Keys.coinsComponent)
+        urlComponents?.path.append(Keys.listComponent)
+
+        guard let finalURL = urlComponents?.url else {return}
         
-        let coinsURL = baseURL.appendingPathComponent(kCoins)
-        let finalURL = coinsURL.appendingPathComponent(kList)
+        print("The final URL is", finalURL)
         
-    
         URLSession.shared.dataTask(with: finalURL) { coinData, _, error in
             if let error = error {
                 print("There was an error: \(error.localizedDescription)")
@@ -39,10 +38,7 @@ class CoinController {
             do {
                 if let topLevelArrayOfCoinDictionaries = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [[String : String]] {
                     for coinDictionary in topLevelArrayOfCoinDictionaries {
-                        if let id = coinDictionary["id"],
-                           let symbol = coinDictionary["symbol"],
-                           let name = coinDictionary["name"] {
-                            let parsedCoin = Coin(id: id, symbol: symbol, name: name)
+                        if let parsedCoin = Coin(dictionary: coinDictionary) {
                             self.coins.append(parsedCoin)
                         }
                     }

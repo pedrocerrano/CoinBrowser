@@ -15,6 +15,7 @@
 		41078BA3274DB735003BD4FA /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41078BA2274DB735003BD4FA /* Coin.swift */; };
 		41078BA5274DB79D003BD4FA /* CoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41078BA4274DB79D003BD4FA /* CoinController.swift */; };
 		41078BAA274DB817003BD4FA /* CoinListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41078BA9274DB817003BD4FA /* CoinListTableViewController.swift */; };
+		419A10FA29A3ED64005D7C4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419A10F929A3ED64005D7C4A /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		41078BA2274DB735003BD4FA /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		41078BA4274DB79D003BD4FA /* CoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinController.swift; sourceTree = "<group>"; };
 		41078BA9274DB817003BD4FA /* CoinListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinListTableViewController.swift; sourceTree = "<group>"; };
+		419A10F929A3ED64005D7C4A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				41078B8D274DB4D2003BD4FA /* SceneDelegate.swift */,
 				41078B94274DB4D4003BD4FA /* Assets.xcassets */,
 				41078B99274DB4D4003BD4FA /* Info.plist */,
+				419A10F929A3ED64005D7C4A /* Constants.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				41078B8C274DB4D2003BD4FA /* AppDelegate.swift in Sources */,
 				41078B8E274DB4D2003BD4FA /* SceneDelegate.swift in Sources */,
 				41078BAA274DB817003BD4FA /* CoinListTableViewController.swift in Sources */,
+				419A10FA29A3ED64005D7C4A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
