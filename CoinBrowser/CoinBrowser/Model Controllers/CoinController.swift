@@ -15,7 +15,7 @@ class CoinController {
     
     //MARK: - FUNCTIONS
     static func fetchCoins(completion: @escaping (Bool) -> Void) {
-        guard let baseURL = URL(string: Constants.CoinGecko.baseURL) else { return completion(false) }
+        guard let baseURL = URL(string: Constants.CoinGecko.baseURL) else { return }
         var urlComponents = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
         urlComponents?.path.append(Constants.CoinGecko.coinPath)
         
@@ -32,9 +32,9 @@ class CoinController {
                 print("Response Status Code: \(response.statusCode)")
             }
             
-            guard let data = coinData else { return completion(false) }
+            guard let data = coinData else { return }
             do {
-                if let topLevel = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [[String : String]] {
+                if let topLevel = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [[String : Any]] {
                     for coinDictionary in topLevel {
                         guard let parcedCoin = Coin(dictionary: coinDictionary) else { return }
                         coins.append(parcedCoin)
